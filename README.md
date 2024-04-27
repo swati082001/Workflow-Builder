@@ -3,6 +3,9 @@
 ## Backend Deployed Link
 `https://workflow-builder-be.onrender.com/`
 
+## Final Deployed Link
+`https://workflow-builder-nu.vercel.app/`
+
 ## Overview
 
 This web application allows users to design and execute custom workflows for basic data manipulation tasks. Users can visually construct workflows using a drag-and-drop interface and then trigger the execution of these workflows on uploaded data. The application provides a seamless integration of frontend (built with React.js and Reactflow) and backend (built with Node.js/Express.js) components, along with database support for storing workflow definitions.
@@ -43,6 +46,16 @@ This web application allows users to design and execute custom workflows for bas
 3. Install dependencies for both frontend and backend using `npm install`.
 4. Start the frontend development server using `npm run dev`.
 5. Start the backend server using `npm run start` for the nodemon to work.
+
+## Screenshots
+   
+![Screenshot 2024-04-27 213046](https://github.com/swati082001/Workflow-Builder/assets/103181682/b61fa6f5-1d53-4418-80a6-8fc756d572ab)
+
+![Screenshot 2024-04-27 214223](https://github.com/swati082001/Workflow-Builder/assets/103181682/ae0990e3-d235-470b-b959-2648eced3d35)
+
+![Screenshot 2024-04-27 214610](https://github.com/swati082001/Workflow-Builder/assets/103181682/8e4fedfc-af07-44f7-87e8-34bd71f9e09f)
+
+
 
 
 ## Additional Information

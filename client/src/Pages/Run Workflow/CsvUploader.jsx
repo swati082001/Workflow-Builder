@@ -81,6 +81,13 @@ const CsvUploader = ({ onCsvUpload }) => {
                 console.log(data)
                 let res = await axios.post(`https://workflow-builder-be.onrender.com/function/`, data);
                 console.log(res);
+                toast({
+                    title: 'Workflow Execution Started',
+                    status: 'success',
+                    duration: 3000,
+                    isClosable: true,
+                });
+
             } else {
                 toast({
                     title: 'Please select a workflow ID and upload a CSV file',
