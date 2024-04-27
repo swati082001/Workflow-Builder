@@ -1,0 +1,87 @@
+.dndflow {
+  font-family: "Sedan", serif;
+  flex-direction: column;
+  display: flex;
+  flex-grow: 1;
+  height: 85vh;
+  width: 95vw;
+  border: "1px solid black";
+}
+
+aside{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dndflow aside {
+  padding: 15px 10px;
+  font-size: 12px;
+  background: white;
+}
+
+.dndflow aside .description {
+  margin-bottom: 10px;
+  font-size: 18px;
+}
+
+.dndflow .dndnode {
+  width: 250px;
+  height: 30px;
+  padding: 4px;
+  border: 1px solid #1a192b;
+  border-radius: 2px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: grab;
+}
+
+
+.dndflow .reactflow-wrapper {
+  flex-grow: 2;
+  height: 100%;
+}
+
+.dndflow .selectall {
+  margin-top: 10px;
+}
+
+.WorkflowId{
+  width: 20%;
+  height: auto;
+}
+
+
+.react-flow__node, .WorkflowId ,.dndnode{
+  background-color: #fce3ee;
+  color: #9b2158;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.react-flow__node:hover , .dndnode:hover {
+  background-color:  #9b2158;
+  color: white; 
+}
+
+
+.save button{
+  background-color: #fce3ee;
+  color: #9b2158;
+}
+
+
+@media screen and (min-width: 768px) {
+  .dndflow {
+    flex-direction: row;
+  }
+
+  .dndflow aside {
+    width: 20%;
+    max-width: 250px;
+  }
+}

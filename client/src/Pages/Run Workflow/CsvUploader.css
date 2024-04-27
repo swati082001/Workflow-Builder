@@ -1,0 +1,82 @@
+.csv-uploader {
+    width: 50vw;
+    border: 2px dashed #9b2158;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    font-family: "Sedan", serif;
+    display: flex;
+    flex: 1;
+    align-items: center;
+    justify-content: center;
+}
+
+.csv-uploader.dragging {
+    border-color: #007bff; /* Highlight border color when dragging over */
+}
+
+.upload-text {
+    margin-top: 10px;
+    color: #9b2158;
+    font-size: 20px;
+    line-height: 1.5;
+}
+
+.csv-uploader input[type="file"] {
+    display: none; /* Hide default file input */
+}
+
+
+.run-workflow-container {
+    font-family: "Sedan", serif;
+}
+
+.content-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 20px;
+}
+
+.title {
+    margin-bottom: 20px;
+    color: #9b2158;
+    font-size: 24px;
+    text-align: center;
+}
+
+.file-selected,.upload-file{
+    display: flex;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    flex-direction: column;
+}
+
+.Dropdown{
+    width: 30vw;
+    margin-top: 40px;
+   
+}
+
+.Dropdown select, .Dropdown select option{
+    background-color: #fce3ee;
+    color: #9b2158;
+}
+
+.save{
+    margin-top: 50px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
