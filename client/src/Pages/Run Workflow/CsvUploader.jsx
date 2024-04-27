@@ -76,8 +76,9 @@ const CsvUploader = ({ onCsvUpload }) => {
             if (selectedWorkflowId && selectedFile) {
                 let data = {
                     csvdata: csvData,
-                    workflowId: selectedWorkflowId
+                    workflowid: selectedWorkflowId
                 };
+                console.log(data)
                 let res = await axios.post(`https://workflow-builder-be.onrender.com/function/`, data);
                 console.log(res);
             } else {
