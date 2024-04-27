@@ -117,6 +117,12 @@ const Workflow = () => {
     try {
       let res = await axios.post(`https://workflow-builder-be.onrender.com/workflow/`, data);
       console.log(res);
+      toast({
+        title: 'Workflow Created',
+        status: 'success',
+        duration: 3000,
+        isClosable: true,
+    });
     } catch (error) {
       console.log(error);
     }
