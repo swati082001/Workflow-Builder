@@ -9,7 +9,8 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 import {Box, Text} from "@chakra-ui/react"
 import Sidebar from './Sidebar';
-import Navbar from "../../Component/Navbar.jsx"
+import Navbar from "../../Component/Navbar.jsx";
+import { useToast } from '@chakra-ui/react';
 
 import './workflow.css';
 import axios from 'axios';
@@ -32,6 +33,7 @@ const Workflow = () => {
   const [workflowId,setWorkflowId] = useState('')
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const toast = useToast()
 
   const onConnect = useCallback(
     (params) => setEdges((eds) => addEdge(params, eds)),
@@ -94,6 +96,16 @@ const Workflow = () => {
         res.push(el.target)
       }
     })
+    let lastCommand = res[res.length-1].split("_")
+    if(lastCommand[0]!=='end'){
+      toast({
+        title: 'The last node should always be the End Node',
+        status: 'error',
+        duration: 6000,
+        isClosable: true,
+    });
+    return;
+    }
 
     let data = {
       workflowid : workflowId,
