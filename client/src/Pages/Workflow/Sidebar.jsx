@@ -1,8 +1,9 @@
-// Sidebar.js
 import React from 'react';
 import { Box, Button } from "@chakra-ui/react";
 
+// Sidebar component definition
 const Sidebar = ({ onSave }) => {
+  // Function triggered when a node is dragged
   const onDragStart = (event, nodeType) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
     event.dataTransfer.effectAllowed = 'move';
@@ -10,8 +11,11 @@ const Sidebar = ({ onSave }) => {
 
   return (
     <aside>
+      {/* Container for workflow nodes */}
       <Box>
+        {/* Description for workflow nodes */}
         <Box className="description">WORKFLOW NODES</Box>
+        {/* Individual draggable nodes */}
         <Box className="dndnode node start" onDragStart={(event) => onDragStart(event, 'start')} draggable aria-label="start Node">
           Start
         </Box>
@@ -31,6 +35,7 @@ const Sidebar = ({ onSave }) => {
           End
         </Box>
       </Box>
+      {/* Button to save the workflow */}
       <Box className='save'>
         <Button variant="outline" onClick={onSave}>Save Workflow</Button>
       </Box>

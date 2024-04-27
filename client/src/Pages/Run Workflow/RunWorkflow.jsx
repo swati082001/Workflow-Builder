@@ -1,21 +1,27 @@
-import React from 'react'
-import Navbar from '../../Component/Navbar'
-import CsvUploader from './CsvUploader';
-import "./CsvUploader.css"
+import React from 'react';
+import Navbar from '../../Component/Navbar'; // Importing Navbar component
+import CsvUploader from './CsvUploader'; // Importing CsvUploader component
+import "./CsvUploader.css"; // Importing CSS for styling
 
+// RunWorkflow component definition
 const RunWorkflow = () => {
+  // Function to handle CSV upload
   const handleCsvUpload = (csvData) => {
-    console.log(csvData);
+    console.log(csvData); // Logging the uploaded CSV data
   };
+
   return (
     <div className="run-workflow-container">
-    <Navbar />
-    <div className="content-container">
+      {/* Render Navbar component */}
+      <Navbar />
+      <div className="content-container">
+        {/* Title for the upload section */}
         <h2 className="title">Upload CSV File</h2>
+        {/* Render CsvUploader component and pass handleCsvUpload function as prop */}
         <CsvUploader onCsvUpload={handleCsvUpload} />
+      </div>
     </div>
-  </div>
-  )
-}
+  );
+};
 
-export default RunWorkflow
+export default RunWorkflow;

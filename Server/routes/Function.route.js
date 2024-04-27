@@ -1,26 +1,25 @@
 const express = require('express');
-const {functionModel} = require("../model/function.model")
-const {workflowModel}  = require('../model/workflow.model')
+const { functionModel } = require("../model/function.model");
+const { workflowModel }  = require('../model/workflow.model');
 const axios = require('axios');
-const functionroute = express.Router()
+const functionroute = express.Router();
 
-
+// Function to post data to an external endpoint
 async function postData(data){
     try {
-        console.log(data,"data")
-        let res = await axios.post(`https://workflow.requestcatcher.com/test`,data)
-        return res
-        
+        let res = await axios.post(`https://workflow.requestcatcher.com/test`, data);
+        return res;
     } catch (error) {
-        console.log(error)
+        console.log(error);
     }
-
 }
 
+// Function to filter CSV data
 function filterData(csvData){
     return csvData.toLowerCase();
 }
 
+// Function to convert CSV data to JSON
 function convertData(csvData){
     const lines = csvData.split('\r\n'); // Split CSV into lines
     const headers = lines[0].split(','); // Extract headers from the first line
@@ -38,80 +37,60 @@ function convertData(csvData){
     }
 
     return jsonData;
-
 }
 
+// Function to simulate a waiting period
 function wait(){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve("Wait is complete after 60 seconds");
         }, 60000);
     });
-
 }
 
-functionroute.post('/',async(req,res)=>{
-    
+// Route to handle function execution
+functionroute.post('/', async(req, res) => {
     try {
-        const functionpost = new functionModel(req.body)
+        const functionpost = new functionModel(req.body);
         await functionpost.save();
-        console.log(req.body.workflowid)
         let getWorkflowIdData = await workflowModel.find({ workflowid: req.body.workflowid });
         let order = getWorkflowIdData[0].workfloworder;
-        console.log(order)
-        let response = []
-        for(let i=0;i<order.length;i++){
+        let response = [];
+        // Iterate through each function in the workflow order
+        for (let i = 0; i < order.length; i++) {
             let orderName = order[i].split("_");
-            console.log(orderName[0]);
-            if(orderName[0]=="start"){
-                response.push({"start":"The start of the funtion"})
-            }
-            else if(orderName[0]=="filter"){
-                //Call the filter data function
+            if (orderName[0] == "start") {
+                response.push({"start": "The start of the function"});
+            } else if (orderName[0] == "filter") {
                 let filtercsv = filterData(req.body.csvdata);
-                response.push({"filter":filtercsv})
-            }
-            else if(orderName[0]=="wait"){
-                 //Call the wait function
-                 wait().then((message) => {
-                    response.push({"wait": message})
+                response.push({"filter": filtercsv});
+            } else if (orderName[0] == "wait") {
+                wait().then((message) => {
+                    response.push({"wait": message});
                 });
-                 
-
-            }
-            else if(orderName[0]=="convert"){
-                //Call the convert data function
+            } else if (orderName[0] == "convert") {
                 let filtercsv = filterData(req.body.csvdata);
                 let convertcsv = convertData(filtercsv);
-                response.push({"convert":convertcsv})
-
-            }
-            else if(orderName[0]=="post"){
-                //Call the post data function
+                response.push({"convert": convertcsv});
+            } else if (orderName[0] == "post") {
                 let filtercsv = filterData(req.body.csvdata);
                 let convertcsv = convertData(filtercsv);
                 let postcsv = postData(convertcsv);
-                response.push({"post":postcsv})
-
-            }
-            else if(orderName[0]=="end"){
-                response.push({"end":"Workflow ended"})
+                response.push({"post": postcsv});
+            } else if (orderName[0] == "end") {
+                response.push({"end": "Workflow ended"});
+                // Send response indicating workflow completion
                 res.send({
-                    "Message":"The workflow has finally been completed",
-                    "data":response
-                })
+                    "Message": "The workflow has finally been completed",
+                    "data": response
+                });
             }
         }
-
-       
-        
     } catch (error) {
         res.send({
             'Message': error.message
-        })
+        });
     }
-})
+});
 
-
-
-module.exports = {functionroute}
+module.exports = { functionroute };
